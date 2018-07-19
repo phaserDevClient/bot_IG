@@ -106,10 +106,13 @@ function onReceivedGameplay(event) {
 
     // FBInstant context id
     var contextId = event.game_play.context_id;
-
+    console.log(JSON.stringify(event));
     if (event.game_play.payload) {
         // Get data from payload
         var payload = JSON.parse(event.game_play.payload);
+        console.log(JSON.stringify(payload));
+        // sendMessage(senderId,contextId,"Infinity Knife","Welcome back",)
+        sendMessage(senderId, contextId, "Infinity Knife", "Want to play again?", null, "Play now!", payload);
         var scoutSent = payload['scoutSent'];
         var scoutDurationInHours = payload['scoutDurationInHours'];
 
