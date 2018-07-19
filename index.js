@@ -98,38 +98,34 @@ app.post('/webhook', (req, res) => {
 });
 
 function onReceivedGameplay(event) {
-    // Page-scoped ID of the bot user
+    // Messenger platform Page-Scope ID
     var senderId = event.sender.id;
 
-    // FBInstant player ID
+    // FBInstant player id
     var playerId = event.game_play.player_id;
 
-    // FBInstant context ID
+    // FBInstant context id
     var contextId = event.game_play.context_id;
 
-    // if(MongoDB){
-    //     addPlayerToCollection(senderId, playerId);
-    // }
     if (event.game_play.payload) {
+        // Get data from payload
         var payload = JSON.parse(event.game_play.payload);
-        console.log(payload);
+        var scoutSent = payload['scoutSent'];
+        var scoutDurationInHours = payload['scoutDurationInHours'];
+
+        // Schedule sending message to player when scout returns.
+        if (scoutSent) {
+            // Scheduler.after(scoutDurationInHours).hours().then(function () {
+                sendMessage(
+                    senderId,
+                    contextId,
+                    'Your scout has come back with more intel. Want to find out more?',
+                    'Get scout report!',
+                    {deeplinkTo: 'scout_screen'}
+                );
+            // });
+        }
     }
-
-    // // Check for payload
-    // if (event.game_play.payload) {
-    //     // The variable payload here contains data set by
-    //     // FBInstant.setSessionData()
-    //     //
-    //     var payload = JSON.parse(event.game_play.payload);
-
-    //     // In this example, the bot is just "echoing" the message received
-    //     // immediately. In your game, you'll want to delay the bot messages
-    //     // to remind the user to play 1, 3, 7 days after game play, for example.
-    //     sendMessage(senderId, null, "Message to game client: '" + payload.message + "'", "Play now!", payload);
-    // }
-    // else{
-
-    // }
 };
 
 // Send bot message
