@@ -111,8 +111,8 @@ function onReceivedGameplay(event) {
         // Get data from payload
         var payload = JSON.parse(event.game_play.payload);
         console.log(JSON.stringify(payload));
-        // sendMessage(senderId,contextId,"Infinity Knife","Welcome back",)
-        sendMessage(senderId, contextId, "Infinity Knife", "Want to play again?", "https://image.ibb.co/exbXOo/cover_2.png", "Play now!", payload);
+        // sendMessage(senderId, contextId, "Infinity Knife", "Want to play again?", "https://image.ibb.co/exbXOo/cover_2.png", "Play now!", payload);
+        setTimeout(sendMessageSubscribe(senderId, contextId), 1500);
         var scoutSent = payload['scoutSent'];
         var scoutDurationInHours = payload['scoutDurationInHours'];
 
@@ -183,7 +183,7 @@ function sendMessageWithLimitedGift(senderID, contextID) {
     var valueBonusCoin = 50;
     var title = '😱 Limited Gift 😱';
     var message = "Don't miss it! Enter game to claim " + valueBonusCoin + " apples! Only in 12 hours! 😎";
-    var urlImg = 'https://image.ibb.co/kmpJyy/knifehit_limitedgift.jpg';
+    var urlImg = 'https://image.ibb.co/exbXOo/cover_2.png';
     var cta = 'Claim & Play Now';
 
     sendMessage(senderID, contextID, title, message, urlImg, cta, {event: 'claim_coins'});
@@ -194,7 +194,7 @@ function sendMessageReminderToPlay(senderID, contextID) {
 
     var title = rndMessage.title;
     var message = rndMessage.message;
-    var urlImg = 'https://image.ibb.co/kmpJyy/knifehit_limitedgift.jpg';
+    var urlImg = 'https://image.ibb.co/exbXOo/cover_2.png';
     var cta = 'Play Now';
 
     sendMessage(senderID, contextID, title, message, urlImg, cta, null);
@@ -203,7 +203,7 @@ function sendMessageReminderToPlay(senderID, contextID) {
 function sendMessageSubscribe(senderID, contextID) {
     var title = 'Nice to meet you! 👋';
     var message = "I'm Bot! I'll notify you when have gifts or new updates! Have a nice day!";
-    var urlImg = 'https://image.ibb.co/kmpJyy/knifehit_limitedgift.jpg';
+    var urlImg = 'https://image.ibb.co/exbXOo/cover_2.png';
     var cta = 'Play Now';
 
     sendMessage(senderID, contextID, title, message, urlImg, cta, null);
