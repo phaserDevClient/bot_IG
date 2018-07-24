@@ -112,7 +112,9 @@ function onReceivedGameplay(event) {
         var payload = JSON.parse(event.game_play.payload);
         console.log(JSON.stringify(payload));
         // sendMessage(senderId, contextId, "Infinity Knife", "Want to play again?", "https://image.ibb.co/exbXOo/cover_2.png", "Play now!", payload);
-        setTimeout(sendMessageSubscribe(senderId, contextId), 1500);
+        setTimeout(function () {
+            sendMessageSubscribe(senderId, contextId)
+        }, 1500);
         var scoutSent = payload['scoutSent'];
         var scoutDurationInHours = payload['scoutDurationInHours'];
 
